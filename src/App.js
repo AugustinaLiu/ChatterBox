@@ -36,7 +36,7 @@ function App() {
     <div className="messages">
       {messages.map((m,i)=>{
         return <div key={i} className="message-wrap">
-          <div className="message">{m.text}</div>
+          <div className="message">{m}</div>
         </div>
       })}
     </div>
@@ -45,8 +45,8 @@ function App() {
       db.send({
         text,name,ts: new Date(),
       })
-      /*setMessages([text, ...messages])
-      console.log(messages)*/
+      setMessages([text, ...messages])
+      console.log(messages)
     }} />
 
     
