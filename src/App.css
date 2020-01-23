@@ -56,7 +56,7 @@ header{
 }
 
 .text-input{
-  border:1px solid black;
+  border:1px solid #56b4d3;
   width:100%;
   border-radius:15px;
   font-size:13px;
@@ -69,20 +69,20 @@ header{
   width: calc(100% - 8px);
 }
 .text-input:focus{
-  border: 1px solid black;
+  border: 1px solid #56b4d3;
   background: white;
 }
 .button:hover{
-  background:black;
+  background:#56b4d3;
   color:white;
 }
 .button:focus{
   outline: none;
-  border:1px solid rgb(175, 175, 175);
+  border:1px solid #bbeeff;
 }
 .button:disabled{
   color:white;
-  background:rgb(175, 175, 175);
+  background:#bbeeff;
 }
 
 .button{
@@ -92,7 +92,8 @@ header{
   top:8px;
   height:24px;
   border-radius:15px;
-  border: 1px solid grey;
+  border: 1px solid #56b4d3;
+  color:#56b4d3;
 }
 
 .messages{
@@ -109,8 +110,8 @@ header{
   width:100%;
 }
 .message{
-  color:white;
-  background:black;
+  color:#56b4d3;
+  background:#fce3a0;
   margin:5px;
   border-radius:15px;
   padding:3px 6px;
@@ -127,8 +128,8 @@ header{
   height:29px;
   margin:0 6px;
   background:transparent;
-  color:white;
-  font-size:18px;
+  color:black;
+  font-size:20px;
   padding:4px;
   cursor: pointer;
   border:none;
@@ -136,7 +137,7 @@ header{
   border-radius: 4px;
 }
 .name-button:hover{
-  background:rgba(255,255,255,0.1)
+  color:white;
 }
 .name-input{
   color:white;
