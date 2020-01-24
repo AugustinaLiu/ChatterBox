@@ -1,61 +1,62 @@
 import React, {useState, useEffect} from 'react'
 import './App.css'
+import {db, useDB} from './db'
 import NamePicker from './NamePicker'
-import {db} from './db'
+import { BrowserRouter, Route } from 'react-router-dom'
 
-
-
-function App() {
-  const [messages, setMessages] = useState([])
-  const [name, setName] = useState('Augustina')
-
+function App(){
   useEffect(()=>{
-    db.listen({
-      receive: m=> {
-        setMessages(current=> [m, ...current])
-      },
-      remove: id=> {
-        setMessages(current=> [...current].filter(m => m.id !== id))
-      },
-    })
-  },[])
+    const {pathname} = window.location
+    if(pathname.length<2) window.location.pathname='home'
+  }, [])
+  return <BrowserRouter>
+    <Route path="/:room" component={Room}/>
+  </BrowserRouter>
+}
+
+
+function Room(props) {
+  const {room} = props.match.params
+  const [name, setName] = useState('')
+  const messages = useDB(room)
 
   return <main>
 
-    <header> 
+    <header>
       <div className="logo-wrap">
         <img className="logo"
           alt="logo"
-          src="https://dcassetcdn.com/design_img/2738551/659842/659842_14945486_2738551_45d1fa94_image.jpg" 
+          src="https://c8.alamy.com/comp/W7BAC7/fruit-watermelon-logo-calligraphic-text-hand-drawn-vector-illustration-realistic-sketch-color-W7BAC7.jpg" 
         />
-        Chatterbox
+        Chatter
       </div>
-      <NamePicker onSave={name=>{}} />
+      <NamePicker onSave={setName} />
     </header>
 
     <div className="messages">
       {messages.map((m,i)=>{
-        return <div key={i} className="message-wrap">
-          <div className="message">{m}</div>
+        return <div key={i} className="message-wrap"
+          from={m.name===name?'me':'you'}>
+          <div className="message">
+            <div className="msg-name">{m.name}</div>
+            <div className="msg-text">{m.text}</div>
+          </div>
         </div>
       })}
     </div>
 
     <TextInput onSend={(text)=> {
       db.send({
-        text,name,ts: new Date(),
+        text, name, ts: new Date(), room
       })
-      setMessages([text, ...messages])
-      console.log(messages)
     }} />
-
     
   </main>
 }
 
-
 function TextInput(props){
   var [text, setText] = useState('') 
+  // normal js comment
   return <div className="text-input-wrap">
     <input 
       value={text} 
@@ -71,13 +72,32 @@ function TextInput(props){
     />
     <button onClick={()=> {
       if(text) props.onSend(text)
-        setText('')}
-      } className="button"
+      setText('')
+    }} className="button"
       disabled={!text}>
-      ↑
+      SEND
     </button>
   </div>
 }
 
 export default App
 
+/*
+import { BrowserRouter, Route } from "react-router-dom";
+function App() {
+  useEffect(()=>{
+    const {pathname} = window.location
+    if(pathname.length<2){
+      window.location.pathname = Math.random().toString(36).slice(7)
+    }
+  },[])
+  return (<BrowserRouter>
+    <Route path="/:room" component={Content} />
+  </BrowserRouter>)
+}
+*/
+
+
+
+
+// const {room} = props.match.params

@@ -104,12 +104,26 @@ header{
   left:0px;
   display:flex;
   flex-direction: column-reverse;
-  overflow-y:scroll;
+  overflow-y:auto;
 }
 .message-wrap{
   width:100%;
+  display:flex;
+  justify-content: flex-start;
 }
-.message{
+
+.message-wrap[from="me"]{
+  justify-content: flex-end;
+}
+
+.msg-name{
+  font-size: 11px;
+  position: absolute;
+  top:-9px;
+  left:5px;
+}
+
+.msg-text{
   color:#56b4d3;
   background:#fce3a0;
   margin:5px;
@@ -117,6 +131,12 @@ header{
   padding:6px 6px;
   display: inline-block;
   font-size: 16px;
+  box-shadow: 0px 2px 2px 2px #E1D095; 
+}
+
+.message{
+  position: relative;
+  margin-top:10px;
 }
 
 
@@ -124,6 +144,7 @@ header{
   display: flex;
   align-items: center;
 }
+
 .name-button{
   height:29px;
   margin:0 6px;
