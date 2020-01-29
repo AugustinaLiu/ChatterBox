@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import './App.css'
+import './media.css'
 import {db, useDB} from './db'
 import NamePicker from './NamePicker'
 import { BrowserRouter, Route } from 'react-router-dom'
@@ -7,6 +8,7 @@ import Camera from 'react-snap-pic'
 import {FiCamera} from 'react-icons/fi'
 import * as firebase from "firebase/app"
 import "firebase/storage"
+import Div100vh from 'react-div-100vh'
 
 function App(){
   useEffect(()=>{
@@ -33,7 +35,7 @@ function Room(props) {
     db.send({ img: imgID, name, ts: new Date(), room })
   }
 
-  return <main>
+  return <Div100vh>
 
     {showCamera && <Camera takePicture={takePicture} />}
 
@@ -41,9 +43,9 @@ function Room(props) {
       <div className="logo-wrap">
         <img className="logo"
           alt="logo"
-          src="https://images.coollogo.com/images/prism-large-green.png" 
+          src="https://comps.canstockphoto.com/cute-watermelon-pizza-clipart_csp45285716.jpg" 
         />
-        chatterbox
+        Chatterbox
       </div>
       <NamePicker onSave={setName} />
     </header>
@@ -63,7 +65,7 @@ function Room(props) {
       }}
     />
     
-  </main>
+  </Div100vh>
 }
 
 const bucket = 'https://firebasestorage.googleapis.com/v0/b/hcde-438.appspot.com/o/'
