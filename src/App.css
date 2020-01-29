@@ -57,17 +57,18 @@ header{
 
 .text-input{
   border:1px solid #56b4d3;
-  width:100%;
   border-radius:15px;
   font-size:13px;
   padding:0 11px;
   position:absolute;
-  left:4px;
+  left:50px;
   top:4px;
   height:32px;
   outline:none;
-  width: calc(100% - 8px);
+  width:calc(100% - 50px);
 }
+
+
 .text-input:focus{
   border: 1px solid #56b4d3;
   background: white;
@@ -176,4 +177,24 @@ header{
   align-items: center;
   margin-right:12px;
   font-size:1.1rem;
+}
+
+.camera {
+  border-radius:20px;
+  background: #56b4d3;
+  color: #fce3a0;
+  position: absolute;
+  height:32px; 
+  width: 32px;
+  left:8px;
+  top:4px;
+}
+
+.camera:hover{
+  background:#56b4d3;
+  color:#fce3a0;
+}
+
+.camera:focus{
+  outline: none;
 }
